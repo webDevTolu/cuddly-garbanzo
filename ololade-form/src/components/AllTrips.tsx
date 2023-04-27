@@ -77,6 +77,7 @@ const AllTrips = () => {
         </div>
       </div>
       <TripList trips={formattedTrips} />
+      {formattedTrips.length === 0 && <p>No data here</p>}
     </div>
   );
 };
