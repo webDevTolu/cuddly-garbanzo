@@ -1,4 +1,12 @@
-import { ChangeEvent, FormEvent, useEffect, useRef, useState } from "react";
+import {
+  ChangeEvent,
+  FormEvent,
+  Fragment,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
+import AllTrips from "./components/AllTrips";
 
 interface PassengerType {
   firstName: string;
@@ -53,88 +61,92 @@ function App() {
   }, [passengers]);
 
   return (
-    <div className="App">
-      <form onSubmit={handleSubmit}>
-        <h2>Personal Info</h2>
-        <div>
+    <Fragment>
+      <AllTrips />
+      <hr />
+      <div className="App">
+        <form onSubmit={handleSubmit}>
+          <h2>Personal Info</h2>
           <div>
-            <label htmlFor="firstName">First Name</label>
-            <input
-              type="text"
-              id="firstName"
-              name="firstName"
-              ref={firstNameRef}
-              onChange={handleChange}
-            />
+            <div>
+              <label htmlFor="firstName">First Name</label>
+              <input
+                type="text"
+                id="firstName"
+                name="firstName"
+                ref={firstNameRef}
+                onChange={handleChange}
+              />
+            </div>
+
+            <div>
+              <label htmlFor="lastName">Last Name</label>
+              <input
+                type="text"
+                id="lastName"
+                name="lastName"
+                ref={lastNameRef}
+                onChange={handleChange}
+              />
+            </div>
+
+            <div>
+              <label htmlFor="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                ref={emailRef}
+                onChange={handleChange}
+              />
+            </div>
+
+            <div>
+              <label htmlFor="phoneNumber">Phone Number</label>
+              <input
+                type="number"
+                id="phoneNumber"
+                name="phoneNumber"
+                ref={phoneNumberRef}
+                onChange={handleChange}
+              />
+            </div>
+          </div>
+
+          <h2>Next of Kin Info</h2>
+          <div>
+            <div>
+              <label htmlFor="nokName">Name of Next of Kin</label>
+              <input
+                type="name"
+                id="nokName"
+                name="nokName"
+                ref={nokNameRef}
+                onChange={handleChange}
+              />
+            </div>
+
+            <div>
+              <label htmlFor="nokNumber">Number of Next of Kin</label>
+              <input
+                type="number"
+                id="nokNumber"
+                name="nokNumber"
+                ref={nokNumberRef}
+                onChange={handleChange}
+              />
+            </div>
           </div>
 
           <div>
-            <label htmlFor="lastName">Last Name</label>
-            <input
-              type="text"
-              id="lastName"
-              name="lastName"
-              ref={lastNameRef}
-              onChange={handleChange}
-            />
+            <button type="submit">Submit</button>
           </div>
-
-          <div>
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              ref={emailRef}
-              onChange={handleChange}
-            />
-          </div>
-
-          <div>
-            <label htmlFor="phoneNumber">Phone Number</label>
-            <input
-              type="number"
-              id="phoneNumber"
-              name="phoneNumber"
-              ref={phoneNumberRef}
-              onChange={handleChange}
-            />
-          </div>
-        </div>
-
-        <h2>Next of Kin Info</h2>
-        <div>
-          <div>
-            <label htmlFor="nokName">Name of Next of Kin</label>
-            <input
-              type="name"
-              id="nokName"
-              name="nokName"
-              ref={nokNameRef}
-              onChange={handleChange}
-            />
-          </div>
-
-          <div>
-            <label htmlFor="nokNumber">Number of Next of Kin</label>
-            <input
-              type="number"
-              id="nokNumber"
-              name="nokNumber"
-              ref={nokNumberRef}
-              onChange={handleChange}
-            />
-          </div>
-        </div>
-
-        <div>
-          <button type="submit">Submit</button>
-        </div>
-      </form>
-      {passengers.map((passenger) => (
-        <p key={passenger.email}>{passenger.firstName}</p>
-      ))}
-    </div>
+        </form>
+        {passengers.map((passenger) => (
+          <p key={passenger.email}>{passenger.firstName}</p>
+        ))}
+      </div>
+    </Fragment>
   );
 }
 
