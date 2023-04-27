@@ -2,12 +2,13 @@ import { useEffect, useState } from "react";
 import { Trip, allTrips } from "../data";
 import TripList from "./TripList";
 import { sortTrips } from "../utils/sortTrip";
+import { filterTrips } from "../utils/filterTrips";
 
 const AllTrips = () => {
   const [formattedTrips, setFormattedTrips] = useState<Trip[]>(allTrips);
   const [sortType, setSortType] = useState<boolean>(true);
 
-  const handleSort = () => {
+  const handleSort = (): void => {
     setSortType((prev) => !prev);
     // sorting function
     const sortedTrips = sortTrips({
@@ -15,6 +16,11 @@ const AllTrips = () => {
       order: sortType ? "asc" : "desc",
     });
     setFormattedTrips(sortedTrips);
+  };
+
+  const handleFilter = (filterValue: string) => {
+    const filteredTrips = filterTrips(formattedTrips, filterValue);
+    setFormattedTrips(filteredTrips);
   };
 
   useEffect(() => {
@@ -35,10 +41,38 @@ const AllTrips = () => {
         <div className="flex items-center gap-4">
           <h3>Filter by:</h3>
           <div className="flex gap-2">
-            <button type="button">All</button>
-            <button type="button">Past</button>
-            <button type="button">Present</button>
-            <button type="button">Future</button>
+            <button
+              type="button"
+              onClick={() => {
+                handleFilter("all");
+              }}
+            >
+              All
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                handleFilter("past");
+              }}
+            >
+              Past
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                handleFilter("present");
+              }}
+            >
+              Present
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                handleFilter("future");
+              }}
+            >
+              Future
+            </button>
           </div>
         </div>
       </div>
