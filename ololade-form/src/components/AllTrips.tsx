@@ -19,7 +19,7 @@ const AllTrips = () => {
   };
 
   const handleFilter = (filterValue: string) => {
-    const filteredTrips = filterTrips(formattedTrips, filterValue);
+    const filteredTrips = filterTrips(allTrips, filterValue);
     setFormattedTrips(filteredTrips);
   };
 
