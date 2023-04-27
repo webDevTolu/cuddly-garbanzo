@@ -32,6 +32,15 @@ const AllTrips = () => {
         <button type="button" onClick={handleSort}>
           {sortType ? "Asc" : "Desc"}
         </button>
+        <div className="flex items-center gap-4">
+          <h3>Filter by:</h3>
+          <div className="flex gap-2">
+            <button type="button">All</button>
+            <button type="button">Past</button>
+            <button type="button">Present</button>
+            <button type="button">Future</button>
+          </div>
+        </div>
       </div>
       <TripList trips={formattedTrips} />
     </div>

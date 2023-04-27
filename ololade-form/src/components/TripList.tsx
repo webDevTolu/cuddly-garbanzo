@@ -4,7 +4,7 @@ import SingleTrip from "./SingleTrip";
 
 const TripList: FC<Trips> = ({ trips }) => {
   return (
-    <ul className="flex flex-col gap-8 divide-y">
+    <ul className="flex flex-col divide-y">
       {trips.map((trip) => (
         <SingleTrip
           key={trip.id}

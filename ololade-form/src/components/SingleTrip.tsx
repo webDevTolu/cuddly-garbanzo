@@ -9,7 +9,7 @@ const SingleTrip: FC<Trip> = ({
   validated,
 }) => {
   return (
-    <li className="flex flex-col gap-4 items-center">
+    <li className="flex gap-4 items-center p-4">
       <span>{id}</span> - <span>{departure_date}</span>
     </li>
   );
