@@ -9,8 +9,11 @@ const SingleTrip: FC<Trip> = ({
   validated,
 }) => {
   return (
-    <li className="flex gap-4 items-center p-4">
+    <li className="flex gap-4 items-center p-4 flex-col">
       <span>{id}</span> - <span>{departure_date}</span>
+      <p>
+        {fare} - {status} - {validated}
+      </p>
     </li>
   );
 };

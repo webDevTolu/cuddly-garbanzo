@@ -2,7 +2,7 @@ import {
   ChangeEvent,
   FormEvent,
   Fragment,
-  useEffect,
+  // useEffect,
   useRef,
   useState,
 } from "react";
@@ -56,9 +56,9 @@ function App() {
     };
     setPassengers(passengers.concat(newPassenger));
   };
-  useEffect(() => {
-    console.log({ passengers });
-  }, [passengers]);
+  // useEffect(() => {
+  //   console.log({ passengers });
+  // }, [passengers]);
 
   return (
     <Fragment>

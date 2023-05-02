@@ -23,3 +23,10 @@ export const filterTrips = (trips: Trip[], filterValue: string): Trip[] => {
 
   return filteredTrips;
 };
+
+export const onChangeFilter = (trips: Trip[], filterValue: string): Trip[] => {
+  const filteredTrips: Trip[] = trips.filter((trip: Trip) =>
+    trip.id.includes(filterValue)
+  );
+  return filteredTrips;
+};

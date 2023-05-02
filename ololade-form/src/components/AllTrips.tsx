@@ -1,12 +1,13 @@
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { Trip, allTrips } from "../data";
 import TripList from "./TripList";
 import { sortTrips } from "../utils/sortTrip";
-import { filterTrips } from "../utils/filterTrips";
+import { filterTrips, onChangeFilter } from "../utils/filterTrips";
 
 const AllTrips = () => {
   const [formattedTrips, setFormattedTrips] = useState<Trip[]>(allTrips);
   const [sortType, setSortType] = useState<boolean>(true);
+  const [inputValue, setInputValue] = useState<string>("");
 
   const handleSort = (): void => {
     setSortType((prev) => !prev);
@@ -23,6 +24,13 @@ const AllTrips = () => {
     setFormattedTrips(filteredTrips);
   };
 
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const inputtedValue = event.target.value;
+    setInputValue(inputtedValue);
+    const filteredTrips = onChangeFilter(allTrips, inputValue);
+    setFormattedTrips(filteredTrips);
+  };
+
   useEffect(() => {
     // automatically sort trips in the ascending order on first load
     const sortedTrips = sortTrips({
@@ -30,6 +38,7 @@ const AllTrips = () => {
       order: "asc",
     });
     setFormattedTrips(sortedTrips);
+    // set
   }, [formattedTrips]);
 
   return (
@@ -38,6 +47,7 @@ const AllTrips = () => {
         <button type="button" onClick={handleSort}>
           {sortType ? "Asc" : "Desc"}
         </button>
+        {/* filter by dates */}
         <div className="flex items-center gap-4">
           <h3>Filter by:</h3>
           <div className="flex gap-2">
@@ -74,6 +84,16 @@ const AllTrips = () => {
               Future
             </button>
           </div>
+        </div>
+        <div>
+          <label htmlFor="inputFilter">Filter:</label>
+          <input
+            type="text"
+            name="inputFilter"
+            id="inputFilter"
+            value={inputValue}
+            onChange={handleChange}
+          />
         </div>
       </div>
       <TripList trips={formattedTrips} />
